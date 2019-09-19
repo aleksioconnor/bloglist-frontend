@@ -30,7 +30,10 @@ const Login = ({
 
   return (
     <div>
+      <h1>Log in in to the application</h1>
+      <p>
       {errorMessage}
+      </p>
       <form onSubmit={handleLogin}>
         username: 
         <input

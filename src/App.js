@@ -12,6 +12,9 @@ function App() {
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [blogs, setBlogs] = useState([])
+  const [author, setAuthor] = useState('')
+  const [title, setTitle] = useState('')
+  const [url, setUrl] = useState('')
 
   useEffect( () => {
     const fetchBlogs = async () => {
@@ -19,6 +22,15 @@ function App() {
       setBlogs(result)
     }
     fetchBlogs()
+  }, [])
+
+  useEffect( () => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogsService.setToken(user.token)
+    }
   }, [])
 
   const loginForm = () => (
@@ -38,12 +50,19 @@ function App() {
     <Dashboard 
       user={user}
       blogs={blogs}
+      title={title}
+      setTitle={setTitle}
+      author={author}
+      setAuthor={setAuthor}
+      url={url}
+      setUrl={setUrl}
+      errorMessage={errorMessage}
+      setErrorMessage={setErrorMessage}
     />
   )
 
   return (
     <div className="App">
-      <h1>Log in in to the application</h1>
       {user === null && loginForm()}
       {user !== null && dashboard()}
 

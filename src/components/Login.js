@@ -16,7 +16,7 @@ const Login = ({
       const user = await loginService.login({
         username, password
       })
-      window.localStorage.setItem('loggedUser', JSON.stringify(user)) // left here, local storage meininki
+      window.localStorage.setItem('loggedUser', JSON.stringify(user)) 
       setUser(user)
       setPassword('')
       setUsername('')
@@ -32,18 +32,18 @@ const Login = ({
     <div>
       <h1>Log in in to the application</h1>
       <p>
-      {errorMessage}
+        {errorMessage}
       </p>
       <form onSubmit={handleLogin}>
-        username: 
+        username:
         <input
           type="text"
           value={username}
           name="Username"
           onChange={({target}) => setUsername(target.value)} // event.target = {target} // destructures the object key
         />
-        password: 
-        <input 
+        password:
+        <input
           type="text"
           value={password}
           name="Password"

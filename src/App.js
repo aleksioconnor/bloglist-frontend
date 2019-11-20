@@ -15,6 +15,8 @@ function App() {
   const [author, setAuthor] = useState('')
   const [title, setTitle] = useState('')
   const [url, setUrl] = useState('')
+  const [blogVisible, setBlogVisible] = useState(false)
+
 
   useEffect( () => {
     const fetchBlogs = async () => {
@@ -58,6 +60,9 @@ function App() {
       setUrl={setUrl}
       errorMessage={errorMessage}
       setErrorMessage={setErrorMessage}
+      blogVisible={blogVisible}
+      setBlogVisible={setBlogVisible}
+      setBlogs={setBlogs}
     />
   )
 

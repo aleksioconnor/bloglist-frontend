@@ -2,6 +2,7 @@ import React from 'react'
 import Blog from './Blog'
 import blogService from '../services/blogs'
 
+
 const LogOut = () => {
   const logUserOut = () => {
     window.localStorage.removeItem('loggedUser')
@@ -25,8 +26,8 @@ const AddBlog = ({
   setBlogs,
 }) => {
 
+
   const updateBlogs = async () => {
-    console.log('toimiiks tää ees')
     const result = await blogService.getAll()
     setBlogs(result)
   }
@@ -55,6 +56,7 @@ const AddBlog = ({
       }, 5000)
     }
   }
+
 
   const hideWhenVisible = { display : blogVisible ? 'none' : '' }
   const showWhenVisible = { display : blogVisible ? '' : 'none' }

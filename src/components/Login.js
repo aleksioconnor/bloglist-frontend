@@ -1,25 +1,24 @@
 import React from 'react'
 import loginService from '../services/login'
+import { useField } from '../hooks'
+
 
 const Login = ({
-  username, 
-  setUsername, 
-  password, 
-  setPassword, 
-  setUser, 
-  errorMessage, 
+  setUser,
+  errorMessage,
   setErrorMessage }) => {
+
+  const username = useField('text')
+  const password = useField('text')
 
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({
-        username, password
-      })
-      window.localStorage.setItem('loggedUser', JSON.stringify(user)) 
+      const user = await loginService.login({'username': username.props.value, 'password': password.props.value })
+
+      window.localStorage.setItem('loggedUser', JSON.stringify(user) )
       setUser(user)
-      setPassword('')
-      setUsername('')
+
     } catch(e) {
       setErrorMessage('wrong credentials')
       setTimeout(() => {
@@ -37,17 +36,11 @@ const Login = ({
       <form onSubmit={handleLogin}>
         username:
         <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({target}) => setUsername(target.value)} // event.target = {target} // destructures the object key
+          {...username.props}
         />
         password:
         <input
-          type="text"
-          value={password}
-          name="Password"
-          onChange={({target}) => setPassword(target.value)}
+          {...password.props}
         />
         <button type='submit'>Login</button>
       </form>

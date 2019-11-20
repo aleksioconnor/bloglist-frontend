@@ -7,8 +7,6 @@ import blogsService from './services/blogs'
 
 function App() {
   // State declarations
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [blogs, setBlogs] = useState([])
@@ -37,10 +35,6 @@ function App() {
 
   const loginForm = () => (
     <Login 
-      username={username} 
-      setUsername={setUsername}
-      password={password}
-      setPassword={setPassword}
       user={user}
       setUser={setUser}
       setErrorMessage={setErrorMessage}
